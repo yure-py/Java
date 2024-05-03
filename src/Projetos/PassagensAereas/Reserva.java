@@ -6,14 +6,10 @@ import java.util.List;
 
 public class Reserva {
 
-    // Erros possiveis
-      // 1 passageiro fazendo 2 reservas diferentes
-      //
-
     // Atributos
-    static private Aeronave aeronaveDesteVOO;
-    static private List<Passageiro> passageirosDoVoo = new ArrayList<>();
-    static private ArrayList<Integer> assentos_Disponiveis;
+    public Aeronave aeronaveDesteVOO;
+    public ArrayList<Passageiro> passageirosDoVoo = new ArrayList<>();
+    public ArrayList<Integer> assentos_Disponiveis;
 
     // Construtor
     public Reserva(Aeronave aeronave){
@@ -26,23 +22,39 @@ public class Reserva {
         // pesquisa sequencial temporario para testar
         for (int j = 0; j < passageirosDoVoo.size(); j++) {
             Passageiro i = passageirosDoVoo.get(j);
-            if (elemento_pesquisado.equals(i)) {
-                return j;
-            } else return -1;
+            if ( elemento_pesquisado.equals(i) ) return j;
         }
+        return -1;
     }
 
     public void fazerReserva(Passageiro e, Integer[] assentos){
 
-        // O passageiro recebe o número de seu assento ou numeros
-        e.adicionarAssentosReservados(assentos);
-        passageirosDoVoo.add(e);
+        if (!assentos_Disponiveis.containsAll(List.of(assentos))){
+            System.out.println("ASSENTOS NÃO DISPONÍVEIS!");
+            return;
+        }
 
-        // Os assentos escolhidos são removidos da lista de assentos disponiveis
-        assentos_Disponiveis.removeAll(Arrays.asList(assentos));
+        int searchedIndex = pesquisarPassageiro(e);
+        if (searchedIndex == -1){
+
+            // O passageiro recebe o número de seu assento ou numeros
+            e.adicionarAssentosReservados(assentos);
+            passageirosDoVoo.add(e);
+
+            // Os assentos escolhidos são removidos da lista de assentos disponiveis
+            assentos_Disponiveis.removeAll(Arrays.asList(assentos));
+
+        }
+        else passageirosDoVoo.get(searchedIndex).adicionarAssentosReservados(assentos);
     }
 
-    public ArrayList<Integer> getAssentos_Disponiveis() {
+    public void cancelarReservas(Passageiro e){
+        passageirosDoVoo.remove(e);
+
+    }
+
+
+        public ArrayList<Integer> getAssentos_Disponiveis() {
         return assentos_Disponiveis;
     }
 }

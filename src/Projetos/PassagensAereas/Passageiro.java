@@ -30,4 +30,16 @@ public class Passageiro {
     public int hashCode() {
         return Objects.hash(ID);
     }
+
+    @Override
+    public String toString() {
+        return Nome;
+    }
+
+    public void imprimir_passagem(){
+        System.out.println("---------------------------");
+        System.out.println("Passageiro: " + Nome);
+        System.out.println("Assentos: " + assentos_reservados.toString());
+        System.out.println("---------------------------");
+    }
 }
