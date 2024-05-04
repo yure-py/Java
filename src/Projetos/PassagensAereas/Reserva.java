@@ -20,26 +20,32 @@ public class Reserva {
     // Métodos
     public void fazerReserva(Passageiro passageiro, Integer[] assentos){
 
+        // Pre-requisitos
+        if (assentos_Disponiveis.isEmpty()){
+            System.out.println("\nSem Vagas disponíveis para este voo\n");
+            return;
+        }
+
         if (!assentos_Disponiveis.containsAll(List.of(assentos))){
             System.out.println("NEM TODOS OS ASSENTOS ESTÃO DISPONÍVEIS!");
             return;
         }
 
+        // Inicializar chave
         passageiro.assentos_reservados.computeIfAbsent(id_voo, k -> new ArrayList<>());
 
+        passageiro.pontosDeFidelidade += assentos.length * 5;
+
         int searchedIndex = passageirosDoVoo.indexOf(passageiro);
-        if (searchedIndex == -1){
-
-            // O passageiro recebe o número de seu assento ou numeros
-            passageiro.adicionarNumerosReservados(assentos, id_voo);
-            passageirosDoVoo.add(passageiro);
-
-            // Os assentos escolhidos são removidos da lista de assentos disponiveis
-            assentos_Disponiveis.removeAll(Arrays.asList(assentos));
-
-        }
-        else
+        if (searchedIndex != -1){
             passageirosDoVoo.get(searchedIndex).adicionarNumerosReservados(assentos, id_voo);
+            assentos_Disponiveis.removeAll(Arrays.asList(assentos));
+            return;
+        }
+
+        passageiro.adicionarNumerosReservados(assentos, id_voo);
+        passageirosDoVoo.add(passageiro);
+        assentos_Disponiveis.removeAll(Arrays.asList(assentos));
     }
 
     public void cancelarReservas(Passageiro e){
@@ -61,7 +67,6 @@ public class Reserva {
         System.out.println("Passageiros");
         System.out.println("\t " + passageirosDoVoo);
         System.out.println("-------------------------------");
-
     }
 
     public ArrayList<Passageiro> getPassageirosDoVoo() {

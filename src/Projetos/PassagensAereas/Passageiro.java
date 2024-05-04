@@ -1,12 +1,17 @@
 package Projetos.PassagensAereas;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Objects;
+
 
 public class Passageiro {
 
     public int ID;
     String Nome;
-    public Map<String,ArrayList<Integer>> assentos_reservados = new HashMap<>();
+    public HashMap<String,ArrayList<Integer>> assentos_reservados = new HashMap<>();
+    public int pontosDeFidelidade;
 
     public Passageiro(String Nome, int ID){
         this.ID = ID;
