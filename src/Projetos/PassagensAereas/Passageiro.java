@@ -1,22 +1,20 @@
 package Projetos.PassagensAereas;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class Passageiro {
 
     public int ID;
     String Nome;
-    ArrayList<Integer> assentos_reservados = new ArrayList<>();
+    public Map<String,ArrayList<Integer>> assentos_reservados = new HashMap<>();
 
     public Passageiro(String Nome, int ID){
         this.ID = ID;
         this.Nome = Nome;
     }
 
-    public void adicionarAssentosReservados(Integer[] e) {
-        assentos_reservados.addAll(Arrays.asList(e));
+    public void adicionarNumerosReservados(Integer[] e, String id) {
+        assentos_reservados.get(id).addAll(Arrays.asList(e));
     }
 
     @Override

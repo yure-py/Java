@@ -7,54 +7,69 @@ import java.util.List;
 public class Reserva {
 
     // Atributos
-    public Aeronave aeronaveDesteVOO;
-    public ArrayList<Passageiro> passageirosDoVoo = new ArrayList<>();
-    public ArrayList<Integer> assentos_Disponiveis;
+    ArrayList<Passageiro> passageirosDoVoo = new ArrayList<>();
+    ArrayList<Integer> assentos_Disponiveis;
+    String id_voo;
 
     // Construtor
-    public Reserva(Aeronave aeronave){
+    public Reserva(Aeronave aeronave, String id){
         assentos_Disponiveis = aeronave.getAssentosDisponiveis();
+        id_voo = id;
     }
 
-
-    public int pesquisarPassageiro(Passageiro elemento_pesquisado){
-
-        // pesquisa sequencial temporario para testar
-        for (int j = 0; j < passageirosDoVoo.size(); j++) {
-            Passageiro i = passageirosDoVoo.get(j);
-            if ( elemento_pesquisado.equals(i) ) return j;
-        }
-        return -1;
-    }
-
-    public void fazerReserva(Passageiro e, Integer[] assentos){
+    // Métodos
+    public void fazerReserva(Passageiro passageiro, Integer[] assentos){
 
         if (!assentos_Disponiveis.containsAll(List.of(assentos))){
-            System.out.println("ASSENTOS NÃO DISPONÍVEIS!");
+            System.out.println("NEM TODOS OS ASSENTOS ESTÃO DISPONÍVEIS!");
             return;
         }
 
-        int searchedIndex = pesquisarPassageiro(e);
+        passageiro.assentos_reservados.computeIfAbsent(id_voo, k -> new ArrayList<>());
+
+        int searchedIndex = passageirosDoVoo.indexOf(passageiro);
         if (searchedIndex == -1){
 
             // O passageiro recebe o número de seu assento ou numeros
-            e.adicionarAssentosReservados(assentos);
-            passageirosDoVoo.add(e);
+            passageiro.adicionarNumerosReservados(assentos, id_voo);
+            passageirosDoVoo.add(passageiro);
 
             // Os assentos escolhidos são removidos da lista de assentos disponiveis
             assentos_Disponiveis.removeAll(Arrays.asList(assentos));
 
         }
-        else passageirosDoVoo.get(searchedIndex).adicionarAssentosReservados(assentos);
+        else
+            passageirosDoVoo.get(searchedIndex).adicionarNumerosReservados(assentos, id_voo);
     }
 
     public void cancelarReservas(Passageiro e){
-        passageirosDoVoo.remove(e);
+
+        if ( passageirosDoVoo.contains(e) ){
+            assentos_Disponiveis.addAll(e.assentos_reservados.get(id_voo));
+            e.assentos_reservados.remove(id_voo);
+            passageirosDoVoo.remove(e);
+        }
+        else
+            System.out.println("Passageiro não encontrado");
+    }
+
+    public void status(){
+
+        System.out.println("-------------------------------");
+        System.out.println("Assentos vagos restantes: ");
+        System.out.println("\t " + assentos_Disponiveis);
+        System.out.println("Passageiros");
+        System.out.println("\t " + passageirosDoVoo);
+        System.out.println("-------------------------------");
 
     }
 
+    public ArrayList<Passageiro> getPassageirosDoVoo() {
+        return passageirosDoVoo;
+    }
 
-        public ArrayList<Integer> getAssentos_Disponiveis() {
+    public ArrayList<Integer> getAssentos_Disponiveis() {
         return assentos_Disponiveis;
     }
+
 }
