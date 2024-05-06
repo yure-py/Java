@@ -1,4 +1,4 @@
-package Aulas.b_encapsulamento.visibilidade;
+package Aulas.POO.b_encapsulamento.visibilidade;
 
 public class TesteCaneta_II {
 

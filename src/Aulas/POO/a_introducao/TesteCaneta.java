@@ -1,4 +1,4 @@
-package Aulas.a_introducao;
+package Aulas.POO.a_introducao;
 
 public class TesteCaneta {
 

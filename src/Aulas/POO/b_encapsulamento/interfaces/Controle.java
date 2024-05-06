@@ -1,4 +1,4 @@
-package Aulas.b_encapsulamento.interfaces;
+package Aulas.POO.b_encapsulamento.interfaces;
 
 public class Controle implements OperarControle{
 
@@ -11,10 +11,6 @@ public class Controle implements OperarControle{
         //...
     }
 
-    @Override
-    public void aumentarVol() {
-        volume += 5;
-    }
     @Override
     public void diminuirVol() {
         volume -= 5;

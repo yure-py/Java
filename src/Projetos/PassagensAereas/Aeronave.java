@@ -21,5 +21,8 @@ public class Aeronave {
 
     public ArrayList<Integer> getAssentosDisponiveis() {
         return AssentosDisponiveis;
+
     }
+
+
 }
