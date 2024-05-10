@@ -1,4 +1,4 @@
-package Aulas.Generics.uses.II_Teste;
+package Aulas.Generics.uses.bookII_Teste;
 
 
 import Aulas.Generics.genericsExamples.Book2.mod1.GenericPrintArray;

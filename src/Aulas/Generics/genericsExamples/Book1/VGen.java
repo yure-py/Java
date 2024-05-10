@@ -1,6 +1,6 @@
 package Aulas.Generics.genericsExamples.Book1;
 
-import Aulas.Generics.uses.I_Testes.Vclasses.*;
+import Aulas.Generics.uses.bookI_Testes.Vclasses.*;
 
 public class VGen<T> {
 

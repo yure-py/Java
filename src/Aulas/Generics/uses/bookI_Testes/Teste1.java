@@ -1,6 +1,6 @@
-package Aulas.Generics.uses;
+package Aulas.Generics.uses.bookI_Testes;
 
-import Aulas.Generics.genericsExamples.GenI;
+import Aulas.Generics.genericsExamples.Book1.GenI;
 
 public class Teste1 {
     public static void iniciar(String[] args) {

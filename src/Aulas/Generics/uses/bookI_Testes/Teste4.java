@@ -1,7 +1,7 @@
-package Aulas.Generics.uses.I_Testes;
+package Aulas.Generics.uses.bookI_Testes;
 
 import Aulas.Generics.genericsExamples.Book1.VGen;
-import Aulas.Generics.uses.I_Testes.Vclasses.*;
+import Aulas.Generics.uses.bookI_Testes.Vclasses.*;
 
 
 public class Teste4 {

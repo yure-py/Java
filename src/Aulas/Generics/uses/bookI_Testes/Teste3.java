@@ -1,4 +1,4 @@
-package Aulas.Generics.uses.I_Testes;
+package Aulas.Generics.uses.bookI_Testes;
 
 import Aulas.Generics.genericsExamples.Book1.IIIOnlyNumbers;
 
