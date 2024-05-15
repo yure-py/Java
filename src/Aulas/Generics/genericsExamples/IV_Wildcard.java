@@ -14,7 +14,7 @@ public class IV_Wildcard<T extends Number> {
         for (T t : ob)
             sum += t.doubleValue();
 
-        return sum / ob.length;
+        return sum / ob.length;git
     }
 
     public boolean isSameAvarage(IV_Wildcard<?> ob) {
